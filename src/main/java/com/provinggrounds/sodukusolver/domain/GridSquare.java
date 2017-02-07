@@ -11,6 +11,15 @@ public class GridSquare {
 	
 	private int confirmedNumber=0;
 	
+	private int x;
+	
+	private int y;
+	
+	public GridSquare(int y, int x){
+		this.y=y;
+		this.x=x;
+	}
+	
 	public int getConfirmedNumber(){
 		return confirmedNumber;
 	}
@@ -31,5 +40,13 @@ public class GridSquare {
 	
 	public Set<Integer> getInitialSet(){
 		return initialSet;
+	}
+	
+	public int getY(){
+		return y;
+	}
+	
+	public int getX(){
+		return x;
 	}
 }

@@ -8,8 +8,11 @@ public class Grid {
 	private List<GridSquare> gridList = new ArrayList<GridSquare>();
 	
 	public Grid(){
-		for(int i=0;i<81;i++){
-			gridList.add(i, new GridSquare());
+		for(int y=1;y<=9;y++){
+			for(int x=1;x<=9;x++){
+				GridSquare gs = new GridSquare(y,x);
+				gridList.add(gs);
+			}
 		}
 	}
 	

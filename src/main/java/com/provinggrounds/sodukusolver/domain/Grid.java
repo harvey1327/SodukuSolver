@@ -1,22 +1,20 @@
 package com.provinggrounds.sodukusolver.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Grid {
 
-	private List<GridSquare> gridList = new ArrayList<GridSquare>();
+	private List<GridSquare> gridSquareList;
 	
-	public Grid(){
-		for(int y=1;y<=9;y++){
-			for(int x=1;x<=9;x++){
-				GridSquare gs = new GridSquare(y,x);
-				gridList.add(gs);
-			}
-		}
+	public List<GridSquare> getGridSquareList(){
+		return gridSquareList;
 	}
 	
-	public List<GridSquare> getGridList(){
-		return gridList;
+	public void setGridSquareList(List<GridSquare> list){
+		this.gridSquareList=list;
+	}
+	
+	public String toString(){
+		return gridSquareList.toString();
 	}
 }

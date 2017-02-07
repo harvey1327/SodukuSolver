@@ -15,24 +15,23 @@ public class GridSquare {
 	
 	private int y;
 	
-	public GridSquare(int y, int x){
-		this.y=y;
-		this.x=x;
-	}
-	
 	public int getConfirmedNumber(){
 		return confirmedNumber;
 	}
 	
-	public boolean setConfirmedNumber(){
-		boolean result=false;
-		if(initialSet.size()==1){
-			Iterator<Integer> iterator=initialSet.iterator();
-			confirmedNumber=iterator.next();
-			result=true;
-		}
-		return result;
+	public void setConfirmedNumber(int confirmedNumber){
+		this.confirmedNumber=confirmedNumber;
 	}
+	
+//	public boolean setConfirmedNumber(){
+//		boolean result=false;
+//		if(initialSet.size()==1){
+//			Iterator<Integer> iterator=initialSet.iterator();
+//			confirmedNumber=iterator.next();
+//			result=true;
+//		}
+//		return result;
+//	}
 	
 	public boolean removePossibleNumber(Integer remove){
 		return initialSet.remove(remove);
@@ -48,5 +47,17 @@ public class GridSquare {
 	
 	public int getX(){
 		return x;
+	}
+	
+	public void setX(int x){
+		this.x=x;
+	}
+	
+	public void setY(int y){
+		this.y=y;
+	}
+	
+	public String toString(){
+		return "|X:"+x+"|Y:"+y+"|Conf:"+confirmedNumber+"|Set:"+initialSet.toString();
 	}
 }

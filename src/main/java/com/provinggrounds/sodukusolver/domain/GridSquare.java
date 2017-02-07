@@ -20,6 +20,7 @@ public class GridSquare {
 	
 	public void setConfirmedNumber(int confirmedNumber){
 		this.confirmedNumber=confirmedNumber;
+		initialSet.clear();
 	}
 	
 	public boolean removePossibleNumber(Integer remove){

@@ -2,7 +2,6 @@ package com.provinggrounds.sodukusolver.domain;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 public class GridSquare {
@@ -22,16 +21,6 @@ public class GridSquare {
 	public void setConfirmedNumber(int confirmedNumber){
 		this.confirmedNumber=confirmedNumber;
 	}
-	
-//	public boolean setConfirmedNumber(){
-//		boolean result=false;
-//		if(initialSet.size()==1){
-//			Iterator<Integer> iterator=initialSet.iterator();
-//			confirmedNumber=iterator.next();
-//			result=true;
-//		}
-//		return result;
-//	}
 	
 	public boolean removePossibleNumber(Integer remove){
 		return initialSet.remove(remove);

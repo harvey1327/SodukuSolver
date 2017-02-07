@@ -53,13 +53,13 @@ input[type=text] {
 
 			<c:choose>
 				<c:when test="${gridSquare.x==1}">
-					<tr style="${bb}"><td><input name="gridSquareList[${status.index}].confirmedNumber" value="${gridSquare.confirmedNumber}" type="text" maxlength="1" /></td>
+					<tr style="${bb}"><td><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /></td>
 				</c:when>
 				<c:when test="${gridSquare.x==size}">
-					<td><input name="gridSquareList[${status.index}].confirmedNumber" value="${gridSquare.confirmedNumber}" type="text" maxlength="1" /></td></tr>
+					<td><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /></td></tr>
 				</c:when>
 				<c:otherwise>
-					<td style="${br}"><input name="gridSquareList[${status.index}].confirmedNumber" value="${gridSquare.confirmedNumber}" type="text" maxlength="1" /></td>
+					<td style="${br}"><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /></td>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>

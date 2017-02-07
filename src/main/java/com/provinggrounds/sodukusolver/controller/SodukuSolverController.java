@@ -15,6 +15,7 @@ public class SodukuSolverController {
 		Grid grid = new Grid();
 		
 		model.addAttribute("grid", grid);
+		model.addAttribute("size", 9);
 		return "SodukuSolverHome";
 	}
 }

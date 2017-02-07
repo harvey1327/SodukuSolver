@@ -13,6 +13,12 @@ table, td {
 	border: 1px solid black;
 }
 
+input[type=text] {
+	width: 50px;
+	height: 50px;
+	font-size: 40px;
+	text-align: center;
+}
 
 </style>
 
@@ -22,30 +28,38 @@ table, td {
 </head>
 <body>
 	<h1>This is the SodukuSolver Home Page</h1>
-
+	
 	<table>
-		<c:forEach var="y" begin="1" end="9">
+		<c:forEach items="${grid.gridList}" var="GridSquare">
 			<c:choose>
-				<c:when test="${y%3==0 && y!=9}">
-					<tr style="border-bottom: 5px solid black;">
+				<c:when test="${GridSquare.x%3==0 && GridSquare.x!=size}">
+					<c:set var="br" value="border-right: 5px solid black;"/>
 				</c:when>
 				<c:otherwise>
-					<tr>
+					<c:set var="br" value=""/>
 				</c:otherwise>
 			</c:choose>
-			<c:forEach var="x" begin="1" end="9">
-				<c:choose>
-					<c:when test="${x%3==0 && x!=9}">
-						<td style="border-right: 5px solid black;">
-					</c:when>
-					<c:otherwise>
-						<td>
-					</c:otherwise>
-				</c:choose>
-				<input type="text" style="width: 50px;height: 50px;font-size: 40px;text-align: center;" maxlength="1"/>
-				</td>
-			</c:forEach>
-			</tr>
+			
+			<c:choose>
+				<c:when test="${GridSquare.y%3==0 && GridSquare.y!=size}">
+					<c:set var="bb" value="border-bottom: 5px solid black;"/>
+				</c:when>
+				<c:otherwise>
+					<c:set var="bb" value=""/>
+				</c:otherwise>
+			</c:choose>
+			
+			<c:choose>
+				<c:when test="${GridSquare.x==1}">
+					<tr style="${bb}"><td><input type="text" maxlength="1"/></td>
+				</c:when>
+				<c:when test="${GridSquare.x==size}">
+					<td><input type="text" maxlength="1"/></td></tr>
+				</c:when>
+				<c:otherwise>
+					<td style="${br}"><input type="text" maxlength="1"/></td>
+				</c:otherwise>
+			</c:choose>
 		</c:forEach>
 	</table>
 

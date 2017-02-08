@@ -31,7 +31,7 @@ public class SodukuSolverController {
 	
 	@RequestMapping(value ="/SodukuSolverHome", method=RequestMethod.POST)
 	public String postSodukuSolverHome(@ModelAttribute("grid") Grid grid){
-		
+		handler.processChain(grid);
 		System.out.println("POST: "+grid);
 		return "SodukuSolverHome";
 	}

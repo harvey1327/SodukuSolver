@@ -8,7 +8,7 @@ public class GridSquare {
 	
 	private Set<Integer> initialSet = new HashSet<Integer>(Arrays.asList(1,2,3,4,5,6,7,8,9));
 	
-	private int confirmedNumber=0;
+	private int confirmedNumber;
 	
 	private int x;
 	
@@ -20,7 +20,9 @@ public class GridSquare {
 	
 	public void setConfirmedNumber(int confirmedNumber){
 		this.confirmedNumber=confirmedNumber;
-		initialSet.clear();
+		if(confirmedNumber!=0){
+			initialSet.clear();
+		}
 	}
 	
 	public boolean removePossibleNumber(Integer remove){

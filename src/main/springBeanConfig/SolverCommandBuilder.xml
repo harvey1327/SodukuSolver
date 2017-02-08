@@ -7,5 +7,5 @@
 	<bean name="columnSolver" class="com.provinggrounds.sodukusolver.solver.ColumnSolver"/>
 	<bean name="squareSolver" class="com.provinggrounds.sodukusolver.solver.SquareSolver"/>
 	
-	<bean name="solverCommand" class="com.provinggrounds.sodukusolver.solver.SolverCommand"/>
+	<bean name="solverCommand" class="com.provinggrounds.sodukusolver.solver.SolverCommand" scope="prototype"/>
 </beans>

@@ -7,7 +7,7 @@ public class SolverCommand {
 
 	private List<SolverInterface> solverList = new ArrayList<SolverInterface>();
 	
-	public void addConcreteSolver(SolverInterface solverInterface){
+	void addConcreteSolver(SolverInterface solverInterface){
 		solverList.add(solverInterface);
 	}
 	

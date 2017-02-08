@@ -34,7 +34,7 @@ public class SodukuSolverHandler {
 	}
 	
 	private SolverCommand getSolverCommand(GridSquare gridSquare){
-		SolverCommand sc = new SolverCommandBuilder().getSolverCommand(gridSquare);
+		SolverCommand sc = new SolverCommandBuilder().buildSolverCommand(gridSquare);
 		return sc;
 	}
 }

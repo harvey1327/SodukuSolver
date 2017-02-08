@@ -2,11 +2,14 @@ package com.provinggrounds.sodukusolver.domain;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class GridSquare {
 	
 	private Set<Integer> initialSet = new HashSet<Integer>(Arrays.asList(1,2,3,4,5,6,7,8,9));
+	
+	private int limit;
 	
 	private int confirmedNumber;
 	
@@ -18,10 +21,22 @@ public class GridSquare {
 		return confirmedNumber;
 	}
 	
+	/**
+	 * Only used with model attribute
+	 * @param confirmedNumber
+	 */
 	public void setConfirmedNumber(int confirmedNumber){
-		this.confirmedNumber=confirmedNumber;
 		if(confirmedNumber!=0){
+			this.confirmedNumber=confirmedNumber;
 			initialSet.clear();
+		}
+	}
+	
+	public int getConfirmedNumberFromSet(){
+		if(initialSet.size()!=1){
+			return 0;
+		} else {
+			return initialSet.toArray(new Integer[1])[0];
 		}
 	}
 	
@@ -47,6 +62,14 @@ public class GridSquare {
 	
 	public void setY(int y){
 		this.y=y;
+	}
+	
+	public void setLimit(int limit){
+		this.limit=limit;
+	}
+	
+	public int getLimit(){
+		return limit;
 	}
 	
 	public String toString(){

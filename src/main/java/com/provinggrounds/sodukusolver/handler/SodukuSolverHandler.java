@@ -23,6 +23,7 @@ public class SodukuSolverHandler {
 				GridSquare gs = new GridSquare();
 				gs.setX(x);
 				gs.setY(y);
+				gs.setLimit(size);
 				list.add(gs);
 			}
 		}

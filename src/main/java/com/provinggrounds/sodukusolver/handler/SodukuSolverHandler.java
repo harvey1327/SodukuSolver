@@ -34,7 +34,7 @@ public class SodukuSolverHandler {
 		//Just one iteration over the Grid
 		for(GridSquare gs : grid.getGridSquareList()){
 			SolverCommand sc = getSolverCommand();
-			sc.processCommands(gs);
+			sc.processCommands(gs, grid);
 		}
 	}
 	

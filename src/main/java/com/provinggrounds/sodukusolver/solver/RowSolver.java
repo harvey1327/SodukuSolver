@@ -7,7 +7,20 @@ class RowSolver implements SolverInterface {
 
 	@Override
 	public void process(GridSquare gridSquare, Grid grid) {
-		System.out.println(this.getClass().getName()+gridSquare.getX()+","+gridSquare.getY());
+		int row = gridSquare.getY();
+
+		for(GridSquare gridSquareTemp : grid.getGridSquareList()){
+			if(gridSquareTemp.getY()==row&&gridSquareTemp.getX()!=gridSquare.getX()){
+				gridSquare.removePossibleNumber(gridSquareTemp.getConfirmedNumber());
+			}
+		}
+		setConfirmedNumber(gridSquare);
+	}
+	
+	private void setConfirmedNumber(GridSquare gridSquare){
+		if(gridSquare.getInitialSet().size()==1){
+			gridSquare.setConfirmedNumber(gridSquare.getConfirmedNumberFromSet());
+		}
 	}
 
 }

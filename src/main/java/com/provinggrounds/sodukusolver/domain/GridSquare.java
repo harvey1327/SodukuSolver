@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.function.Predicate;
 
 public class GridSquare {
 	
@@ -21,14 +22,10 @@ public class GridSquare {
 		return confirmedNumber;
 	}
 	
-	/**
-	 * Only used with model attribute
-	 * @param confirmedNumber
-	 */
 	public void setConfirmedNumber(int confirmedNumber){
 		if(confirmedNumber!=0){
 			this.confirmedNumber=confirmedNumber;
-			initialSet.clear();
+			initialSet.removeIf((Integer i)->i!=confirmedNumber);
 		}
 	}
 	

@@ -1,6 +1,6 @@
 package com.provinggrounds.sodukusolver.solver;
 
-public interface SolverInterface {
+interface SolverInterface {
 	
-	public void process();
+	void process();
 }

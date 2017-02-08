@@ -5,11 +5,8 @@ import java.util.List;
 
 import com.provinggrounds.sodukusolver.domain.Grid;
 import com.provinggrounds.sodukusolver.domain.GridSquare;
-import com.provinggrounds.sodukusolver.solver.ColumnSolver;
-import com.provinggrounds.sodukusolver.solver.RowSolver;
 import com.provinggrounds.sodukusolver.solver.SolverCommand;
-import com.provinggrounds.sodukusolver.solver.SolverInterface;
-import com.provinggrounds.sodukusolver.solver.SquareSolver;
+import com.provinggrounds.sodukusolver.solver.SolverCommandBuilder;
 
 public class SodukuSolverHandler {
 
@@ -37,14 +34,7 @@ public class SodukuSolverHandler {
 	}
 	
 	private SolverCommand getSolverCommand(GridSquare gridSquare){
-		SolverInterface row = new RowSolver(gridSquare);
-		SolverInterface col = new ColumnSolver(gridSquare);
-		SolverInterface squ = new SquareSolver(gridSquare);
-		
-		SolverCommand sc = new SolverCommand();
-		sc.addConcreteSolver(row);
-		sc.addConcreteSolver(col);
-		sc.addConcreteSolver(squ);
+		SolverCommand sc = new SolverCommandBuilder().getSolverCommand(gridSquare);
 		return sc;
 	}
 }

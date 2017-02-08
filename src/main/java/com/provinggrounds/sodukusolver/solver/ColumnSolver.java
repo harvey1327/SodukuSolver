@@ -2,11 +2,11 @@ package com.provinggrounds.sodukusolver.solver;
 
 import com.provinggrounds.sodukusolver.domain.GridSquare;
 
-public class ColumnSolver implements SolverInterface {
+class ColumnSolver implements SolverInterface {
 	
 	private GridSquare gridSquare;
 	
-	public ColumnSolver(GridSquare gridSquare){
+	ColumnSolver(GridSquare gridSquare){
 		this.gridSquare=gridSquare;
 	}
 

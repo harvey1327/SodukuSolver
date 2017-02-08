@@ -23,7 +23,7 @@ public class GridSquare {
 	public void setConfirmedNumber(int confirmedNumber){
 		if(confirmedNumber!=0){
 			this.confirmedNumber=confirmedNumber;
-			initialSet.removeIf((Integer i)->i!=confirmedNumber);
+			initialSet.removeIf(i->i!=confirmedNumber);
 		}
 	}
 	

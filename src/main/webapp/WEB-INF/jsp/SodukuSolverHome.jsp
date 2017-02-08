@@ -51,7 +51,7 @@ input[type=text] {
 				</c:otherwise>
 			</c:choose>
 
-			<c:choose>
+			<!--<c:choose>
 				<c:when test="${gridSquare.x==1}">
 					<tr style="${bb}"><td><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /></td>
 				</c:when>
@@ -61,9 +61,9 @@ input[type=text] {
 				<c:otherwise>
 					<td style="${br}"><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /></td>
 				</c:otherwise>
-			</c:choose>
+			</c:choose>--->
 			
-			<!--<c:choose>
+			<c:choose>
 				<c:when test="${gridSquare.x==1}">
 					<tr style="${bb}"><td><c:out value="${gridSquare.initialSet}"/><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /></td>
 				</c:when>
@@ -73,7 +73,7 @@ input[type=text] {
 				<c:otherwise>
 					<td style="${br}"><c:out value="${gridSquare.initialSet}"/><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /></td>
 				</c:otherwise>
-			</c:choose>--->
+			</c:choose>
 			
 		</c:forEach>
 	</table>

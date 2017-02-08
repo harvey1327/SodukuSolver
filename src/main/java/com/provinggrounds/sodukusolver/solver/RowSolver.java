@@ -3,15 +3,9 @@ package com.provinggrounds.sodukusolver.solver;
 import com.provinggrounds.sodukusolver.domain.GridSquare;
 
 class RowSolver implements SolverInterface {
-	
-	private GridSquare gridSquare;
-	
-	RowSolver(GridSquare gridSquare){
-		this.gridSquare=gridSquare;
-	}
 
 	@Override
-	public void process() {
+	public void process(GridSquare gridSquare) {
 		System.out.println(this.getClass().getName()+gridSquare.getX()+","+gridSquare.getY());
 	}
 

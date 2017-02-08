@@ -3,6 +3,8 @@ package com.provinggrounds.sodukusolver.solver;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.provinggrounds.sodukusolver.domain.GridSquare;
+
 public class SolverCommand {
 
 	private List<SolverInterface> solverList = new ArrayList<SolverInterface>();
@@ -11,9 +13,9 @@ public class SolverCommand {
 		solverList.add(solverInterface);
 	}
 	
-	public void processCommands(){
+	public void processCommands(GridSquare gridSquare){
 		for(SolverInterface solverInterface : solverList){
-			solverInterface.process();
+			solverInterface.process(gridSquare);
 		}
 	}
 }

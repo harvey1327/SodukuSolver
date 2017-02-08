@@ -28,13 +28,13 @@ public class SodukuSolverHandler {
 	public void processChain(Grid grid){
 		//Just one iteration over the Grid
 		for(GridSquare gs : grid.getGridSquareList()){
-			SolverCommand sc = getSolverCommand(gs);
-			sc.processCommands();
+			SolverCommand sc = getSolverCommand();
+			sc.processCommands(gs);
 		}
 	}
 	
-	private SolverCommand getSolverCommand(GridSquare gridSquare){
-		SolverCommand sc = new SolverCommandBuilder().buildSolverCommand(gridSquare);
+	private SolverCommand getSolverCommand(){
+		SolverCommand sc = new SolverCommandBuilder().buildSolverCommand();
 		return sc;
 	}
 }

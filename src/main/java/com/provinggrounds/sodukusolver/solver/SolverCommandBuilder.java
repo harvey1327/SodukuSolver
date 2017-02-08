@@ -1,15 +1,18 @@
 package com.provinggrounds.sodukusolver.solver;
 
-import com.provinggrounds.sodukusolver.domain.GridSquare;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 public class SolverCommandBuilder {
-
-	public SolverCommand buildSolverCommand(GridSquare gridSquare){
-		SolverInterface row = new RowSolver(gridSquare);
-		SolverInterface col = new ColumnSolver(gridSquare);
-		SolverInterface squ = new SquareSolver(gridSquare);
+	
+	private ApplicationContext context = new FileSystemXmlApplicationContext("src/main/springBeanConfig/SolverCommandBuilder.xml");
+	
+	public SolverCommand buildSolverCommand(){
+		SolverInterface row = context.getBean("rowSolver", RowSolver.class);
+		SolverInterface col = context.getBean("columnSolver", ColumnSolver.class);
+		SolverInterface squ = context.getBean("squareSolver", SquareSolver.class);
 		
-		SolverCommand sc = new SolverCommand();
+		SolverCommand sc = context.getBean("solverCommand", SolverCommand.class);
 		sc.addConcreteSolver(row);
 		sc.addConcreteSolver(col);
 		sc.addConcreteSolver(squ);

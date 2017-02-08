@@ -4,14 +4,8 @@ import com.provinggrounds.sodukusolver.domain.GridSquare;
 
 class ColumnSolver implements SolverInterface {
 	
-	private GridSquare gridSquare;
-	
-	ColumnSolver(GridSquare gridSquare){
-		this.gridSquare=gridSquare;
-	}
-
 	@Override
-	public void process() {
+	public void process(GridSquare gridSquare) {
 		System.out.println(this.getClass().getName()+gridSquare.getX()+","+gridSquare.getY());
 	}
 }

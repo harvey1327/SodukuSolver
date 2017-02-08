@@ -15,8 +15,6 @@ public class SolverCommand {
 	}
 	
 	public void processCommands(GridSquare gridSquare, Grid grid){
-		for(SolverInterface solverInterface : solverList){
-			solverInterface.process(gridSquare, grid);
-		}
+		solverList.forEach(solverInterface->solverInterface.process(gridSquare, grid));
 	}
 }

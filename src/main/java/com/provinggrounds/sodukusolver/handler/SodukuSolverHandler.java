@@ -33,10 +33,8 @@ public class SodukuSolverHandler {
 	
 	public void processChain(Grid grid){
 		//Just one iteration over the Grid
-		for(GridSquare gs : grid.getGridSquareList()){
-			SolverCommand sc = getSolverCommand();
-			sc.processCommands(gs, grid);
-		}
+		SolverCommand sc = getSolverCommand();
+		grid.getGridSquareList().forEach(gridSquare->sc.processCommands(gridSquare, grid));
 	}
 	
 	private SolverCommand getSolverCommand(){

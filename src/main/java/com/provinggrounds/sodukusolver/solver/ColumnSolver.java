@@ -3,11 +3,6 @@ package com.provinggrounds.sodukusolver.solver;
 import com.provinggrounds.sodukusolver.domain.Grid;
 import com.provinggrounds.sodukusolver.domain.GridSquare;
 
-/**
- * Given any GridSquare find all other GridSquares within the Column
- * @author HARBAL
- *
- */
 class ColumnSolver implements SolverInterface {
 	
 	@Override

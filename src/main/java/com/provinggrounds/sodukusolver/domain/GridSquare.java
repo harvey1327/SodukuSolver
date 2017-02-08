@@ -2,9 +2,7 @@ package com.provinggrounds.sodukusolver.domain;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
-import java.util.function.Predicate;
 
 public class GridSquare {
 	

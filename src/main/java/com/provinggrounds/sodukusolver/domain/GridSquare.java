@@ -8,7 +8,7 @@ public class GridSquare {
 	
 	private Set<Integer> initialSet = new HashSet<Integer>(Arrays.asList(1,2,3,4,5,6,7,8,9));
 	
-	private int limit;
+	private int parent;
 	
 	private int confirmedNumber;
 	
@@ -59,12 +59,12 @@ public class GridSquare {
 		this.y=y;
 	}
 	
-	public void setLimit(int limit){
-		this.limit=limit;
+	public int getParent(){
+		return parent;
 	}
 	
-	public int getLimit(){
-		return limit;
+	public void setParent(int parent){
+		this.parent=parent;
 	}
 	
 	public String toString(){

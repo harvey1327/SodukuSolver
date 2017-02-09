@@ -51,7 +51,7 @@ input[type=text] {
 				</c:otherwise>
 			</c:choose>
 
-			<!--<c:choose>
+		<!--<c:choose>
 				<c:when test="${gridSquare.x==1}">
 					<tr style="${bb}"><td><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /></td>
 				</c:when>
@@ -65,18 +65,19 @@ input[type=text] {
 			
 			<c:choose>
 				<c:when test="${gridSquare.x==1}">
-					<tr style="${bb}"><td><c:out value="${gridSquare.initialSet}"/><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /></td>
+					<tr style="${bb}"><td><c:out value="${gridSquare.initialSet}"/><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /><c:out value="${gridSquare.parent}"/></td>
 				</c:when>
 				<c:when test="${gridSquare.x==size}">
-					<td><c:out value="${gridSquare.initialSet}"/><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /></td></tr>
+					<td><c:out value="${gridSquare.initialSet}"/><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /><c:out value="${gridSquare.parent}"/></td></tr>
 				</c:when>
 				<c:otherwise>
-					<td style="${br}"><c:out value="${gridSquare.initialSet}"/><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /></td>
+					<td style="${br}"><c:out value="${gridSquare.initialSet}"/><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /><c:out value="${gridSquare.parent}"/></td>
 				</c:otherwise>
 			</c:choose>
 			
 		</c:forEach>
 	</table>
+	<!--<c:out value="${gridSquare.parent}"/> -->
 	<!--<c:out value="${gridSquare.x}"/>,<c:out value="${gridSquare.y}"/>--->
 	<!--<c:out value="${gridSquare.initialSet}"/>--->
 	<br />

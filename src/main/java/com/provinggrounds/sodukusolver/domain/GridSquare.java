@@ -20,6 +20,10 @@ public class GridSquare {
 		return confirmedNumber;
 	}
 	
+	public boolean hasConfirmed(){
+		return initialSet.size()==1;
+	}
+	
 	public void setConfirmedNumber(int confirmedNumber){
 		if(confirmedNumber!=0){
 			this.confirmedNumber=confirmedNumber;
@@ -35,8 +39,12 @@ public class GridSquare {
 		}
 	}
 	
-	public boolean removePossibleNumber(Integer remove){
-		return initialSet.remove(remove);
+	public void removePossibleNumber(Integer remove){
+		if(initialSet.size()!=1){
+			initialSet.remove(remove);
+		} else {
+			throw new NullPointerException(this.toString());
+		}
 	}
 	
 	public Set<Integer> getInitialSet(){

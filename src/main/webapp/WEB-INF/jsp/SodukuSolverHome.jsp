@@ -14,7 +14,7 @@ table, td {
 	border: 1px solid black;
 }
 
-input[type=text] {
+input[type=number] {
 	width: 50px;
 	height: 50px;
 	font-size: 40px;
@@ -50,28 +50,16 @@ input[type=text] {
 					<c:set var="bb" value="" />
 				</c:otherwise>
 			</c:choose>
-
-		<!--<c:choose>
-				<c:when test="${gridSquare.x==1}">
-					<tr style="${bb}"><td><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /></td>
-				</c:when>
-				<c:when test="${gridSquare.x==size}">
-					<td><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /></td></tr>
-				</c:when>
-				<c:otherwise>
-					<td style="${br}"><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /></td>
-				</c:otherwise>
-			</c:choose>--->
 			
 			<c:choose>
 				<c:when test="${gridSquare.x==1}">
-					<tr style="${bb}"><td><c:out value="${gridSquare.initialSet}"/><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /><c:out value="${gridSquare.parent}"/></td>
+					<tr style="${bb}"><td><c:out value="${gridSquare.initialSet}"/><form:input path="gridSquareList[${status.index}].confirmedNumber" type="number" min="0" max="9" /></td>
 				</c:when>
 				<c:when test="${gridSquare.x==size}">
-					<td><c:out value="${gridSquare.initialSet}"/><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /><c:out value="${gridSquare.parent}"/></td></tr>
+					<td><c:out value="${gridSquare.initialSet}"/><form:input path="gridSquareList[${status.index}].confirmedNumber" type="number" min="0" max="9" /></td></tr>
 				</c:when>
 				<c:otherwise>
-					<td style="${br}"><c:out value="${gridSquare.initialSet}"/><form:input path="gridSquareList[${status.index}].confirmedNumber" type="text" maxlength="1" /><c:out value="${gridSquare.parent}"/></td>
+					<td style="${br}"><c:out value="${gridSquare.initialSet}"/><form:input path="gridSquareList[${status.index}].confirmedNumber" type="number" min="0" max="9" /></td>
 				</c:otherwise>
 			</c:choose>
 			

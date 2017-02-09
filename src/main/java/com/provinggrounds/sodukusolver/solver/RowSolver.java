@@ -24,6 +24,8 @@ class RowSolver extends SolverUtil implements SolverInterface {
 
 	@Override
 	protected boolean isGridSquareTempInSameArea(GridSquare gridSquare, GridSquare gridSquareTemp) {
-		return gridSquareTemp.getY() == gridSquare.getY() && gridSquareTemp.getX() != gridSquare.getX();
+		int x=gridSquare.getX();
+		int y=gridSquare.getY();
+		return gridSquareTemp.getY() == y && gridSquareTemp.getX() != x;
 	}
 }

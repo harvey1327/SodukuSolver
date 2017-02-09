@@ -20,10 +20,6 @@ public class GridSquare {
 		return confirmedNumber;
 	}
 	
-	public boolean isInitialSetSizeOne(){
-		return initialSet.size()==1;
-	}
-	
 	public boolean isConfirmed(){
 		return confirmedNumber!=0;
 	}
@@ -36,10 +32,10 @@ public class GridSquare {
 	}
 	
 	public int getConfirmedNumberFromSet(){
-		if(initialSet.size()!=1){
-			return 0;
-		} else {
+		if(initialSet.size()==1){
 			return initialSet.toArray(new Integer[1])[0];
+		} else {
+			return 0;
 		}
 	}
 	

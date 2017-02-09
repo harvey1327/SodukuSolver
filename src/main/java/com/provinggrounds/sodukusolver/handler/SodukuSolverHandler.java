@@ -68,7 +68,7 @@ public class SodukuSolverHandler {
 	
 	public void processChain(Grid grid){
 		SolverCommand sc = getSolverCommand();
-		for (int i = 1; i <= 500; i++) {
+		for (int i = 1; i <= 1000; i++) {
 			for (GridSquare gridSquare : grid.getGridSquareList()) {
 				if(!gridSquare.isConfirmed()){
 					sc.processCommands(gridSquare, grid);

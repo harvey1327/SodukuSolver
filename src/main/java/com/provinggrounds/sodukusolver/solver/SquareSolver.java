@@ -19,7 +19,7 @@ class SquareSolver extends SolverUtil implements SolverInterface {
 				.forEach(gridSquareTemp -> removePossibleNumberFromGridSquare(gridSquare, gridSquareTemp));
 		setConfirmedNumberInGridSquare(gridSquare);
 		if(!gridSquare.isConfirmed()){
-			setValueIfGridSquareHasUnique(gridSquare, grid);
+			//setValueIfGridSquareHasUnique(gridSquare, grid);
 		}
 	}
 

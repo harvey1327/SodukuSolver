@@ -34,9 +34,7 @@ public abstract class SolverUtil {
 	 * @param gridSquare
 	 */
 	protected void setConfirmedNumberInGridSquare(GridSquare gridSquare) {
-		if (gridSquare.isInitialSetSizeOne()) {
-			gridSquare.setConfirmedNumber(gridSquare.getConfirmedNumberFromSet());
-		}
+		gridSquare.setConfirmedNumber(gridSquare.getConfirmedNumberFromSet());
 	}
 	
 	/**

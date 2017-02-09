@@ -67,14 +67,13 @@ public class SodukuSolverHandler {
 	}
 	
 	public void processChain(Grid grid){
-		//Just one iteration over the Grid
 		SolverCommand sc = getSolverCommand();
-		for(int i=1;i<=1000;i++){
-			for(GridSquare gridSquare:grid.getGridSquareList()){
-				sc.processCommands(gridSquare, grid);
+		for (int i = 1; i <= 500; i++) {
+			for (GridSquare gridSquare : grid.getGridSquareList()) {
+				if(!gridSquare.isConfirmed()){
+					sc.processCommands(gridSquare, grid);
+				}
 			}
-			//grid.getGridSquareList().forEach(gridSquare->sc.processCommands(gridSquare, grid));
-			System.out.println("Process Number: "+i);
 		}
 	}
 	

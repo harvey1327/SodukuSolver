@@ -21,7 +21,7 @@ class SquareSolver implements SolverInterface {
 		grid.getGridSquareList().stream().filter(gridSquareTemp -> isGridSquareTempInSameParent(gridSquare, gridSquareTemp))
 				.forEach(gridSquareTemp -> removePossibleNumberFromGridSquare(gridSquare, gridSquareTemp));
 		setConfirmedNumberInGridSquare(gridSquare);
-		if(!gridSquare.hasConfirmed()){
+		if(!gridSquare.isConfirmed()){
 			setValueIfGridSquareHasUnique(gridSquare, grid);
 		}
 	}
@@ -56,7 +56,7 @@ class SquareSolver implements SolverInterface {
 	 * @param gridSquare
 	 */
 	private void setConfirmedNumberInGridSquare(GridSquare gridSquare) {
-		if (gridSquare.hasConfirmed()) {
+		if (gridSquare.isInitialSetSizeOne()) {
 			gridSquare.setConfirmedNumber(gridSquare.getConfirmedNumberFromSet());
 		}
 	}
@@ -65,7 +65,7 @@ class SquareSolver implements SolverInterface {
 		Set<Integer> possibleIntegersSet = new HashSet<Integer>();
 		grid.getGridSquareList().stream()
 				.filter(gridSquareTemp -> isGridSquareTempInSameParent(gridSquare, gridSquareTemp)
-						&& !gridSquareTemp.hasConfirmed())
+						&& !gridSquareTemp.isConfirmed())
 				.forEach(gridSquareTemp->possibleIntegersSet.addAll(gridSquareTemp.getInitialSet()));
 
 		Set<Integer> uniqueNumbers = new HashSet<Integer>();

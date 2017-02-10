@@ -16,17 +16,15 @@ class RowSolver implements SolverInterface {
 
 	@Override
 	public void process(Grid grid) {
-		for(GridSquare mainGS : grid.getGridSquareList()){
-			if(!mainGS.isConfirmed()){
-				int mainX=mainGS.getX();
-				int mainY=mainGS.getY();
-				List<GridSquare> tempGSList = util.getTempGSListForRow(mainX, mainY, grid);
-				for(GridSquare tempGS : tempGSList){
-					if(tempGS.isConfirmed()){
-						mainGS.removePossibleNumber(tempGS.getConfirmedNumber());
-					}
-				}
-			}
-		}
+		grid.getGridSquareList().stream()
+				.filter(mainGS -> !mainGS.isConfirmed())
+				.forEach(mainGS -> processRemoves(mainGS, grid));
+	}
+
+	private void processRemoves(GridSquare mainGS, Grid grid) {
+		List<GridSquare> tempGSList = util.getTempGSListForRow(mainGS.getX(), mainGS.getY(), grid);
+		tempGSList.stream()
+				.filter(tempGS -> tempGS.isConfirmed())
+				.forEach(tempGS -> mainGS.removePossibleNumber(tempGS.getConfirmedNumber()));
 	}
 }

@@ -16,18 +16,15 @@ class SquareSolver implements SolverInterface {
 
 	@Override
 	public void process(Grid grid) {
-		for(GridSquare mainGS : grid.getGridSquareList()){
-			if(!mainGS.isConfirmed()){
-				int mainX=mainGS.getX();
-				int mainY=mainGS.getY();
-				int mainParent=mainGS.getParent();
-				List<GridSquare> tempGSList = util.getTempGSListForSquare(mainX, mainY, mainParent, grid);
-				for(GridSquare tempGS : tempGSList){
-					if(tempGS.isConfirmed()){
-						mainGS.removePossibleNumber(tempGS.getConfirmedNumber());
-					}
-				}
-			}
-		}
+		grid.getGridSquareList().stream()
+				.filter(mainGS -> !mainGS.isConfirmed())
+				.forEach(mainGS -> processRemoves(mainGS, grid));
+	}
+
+	private void processRemoves(GridSquare mainGS, Grid grid) {
+		List<GridSquare> tempGSList = util.getTempGSListForSquare(mainGS.getX(), mainGS.getY(), mainGS.getParent(), grid);
+		tempGSList.stream()
+				.filter(tempGS -> tempGS.isConfirmed())
+				.forEach(tempGS -> mainGS.removePossibleNumber(tempGS.getConfirmedNumber()));
 	}
 }

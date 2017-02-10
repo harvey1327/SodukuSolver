@@ -13,23 +13,25 @@ public class ConfirmSolver implements SolverInterface {
 
 	@Override
 	public void process(Grid grid) {
-		for(GridSquare mainGS : grid.getGridSquareList()){
-			if(!mainGS.isConfirmed()){
-				mainGS.setConfirmedNumber(mainGS.getConfirmedNumberFromSet());
-				if(!mainGS.isConfirmed()){
-					int mainX=mainGS.getX();
-					int mainY=mainGS.getY();
-					int mainParent=mainGS.getParent();
-					
-					List<GridSquare> tempGSListForSquare = util.getTempGSListForSquare(mainX, mainY, mainParent, grid);
-					List<GridSquare> tempGSListForRow = util.getTempGSListForRow(mainX, mainY, grid);
-					List<GridSquare> tempGSListForColumn = util.getTempGSListForColumn(mainX, mainY, grid);
-					heuristicNumberFinder(mainGS, tempGSListForSquare);
-					heuristicNumberFinder(mainGS, tempGSListForRow);
-					heuristicNumberFinder(mainGS, tempGSListForColumn);
-				}
-			}
+		grid.getGridSquareList().stream()
+				.filter(mainGS -> !mainGS.isConfirmed())
+				.forEach(mainGS -> confirmNumber(mainGS, grid));
+	}
+	
+	private void confirmNumber(GridSquare mainGS, Grid grid){
+		mainGS.setConfirmedNumber(mainGS.getConfirmedNumberFromSet());
+		if(!mainGS.isConfirmed()){
+			processHeuristic(mainGS, grid);
 		}
+	}
+
+	private void processHeuristic(GridSquare mainGS, Grid grid) {
+		List<GridSquare> tempGSListForSquare = util.getTempGSListForSquare(mainGS.getX(), mainGS.getY(), mainGS.getParent(), grid);
+		List<GridSquare> tempGSListForRow = util.getTempGSListForRow(mainGS.getX(), mainGS.getY(), grid);
+		List<GridSquare> tempGSListForColumn = util.getTempGSListForColumn(mainGS.getX(), mainGS.getY(), grid);
+		heuristicNumberFinder(mainGS, tempGSListForSquare);
+		heuristicNumberFinder(mainGS, tempGSListForRow);
+		heuristicNumberFinder(mainGS, tempGSListForColumn);
 	}
 
 	private void heuristicNumberFinder(GridSquare mainGS, List<GridSquare> tempGSList) {
@@ -38,7 +40,8 @@ public class ConfirmSolver implements SolverInterface {
 				.forEach(tempGS->nonUniqueIntegersSet.addAll(tempGS.getInitialSet()));
 
 		Set<Integer> uniqueNumbers = new HashSet<Integer>();
-		mainGS.getInitialSet().stream().filter(number -> !nonUniqueIntegersSet.contains(number))
+		mainGS.getInitialSet().stream()
+				.filter(number -> !nonUniqueIntegersSet.contains(number))
 				.forEach(number -> uniqueNumbers.add(number));
 
 		if (uniqueNumbers.size() == 1) {

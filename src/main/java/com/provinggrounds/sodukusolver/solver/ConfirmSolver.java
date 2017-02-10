@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.provinggrounds.sodukusolver.domain.Grid;
 import com.provinggrounds.sodukusolver.domain.GridSquare;
+import com.provinggrounds.sodukusolver.solver.SolverUtil.Area;
 
 public class ConfirmSolver implements SolverInterface {
 	
@@ -26,9 +27,9 @@ public class ConfirmSolver implements SolverInterface {
 	}
 
 	private void processHeuristic(GridSquare mainGS, Grid grid) {
-		List<GridSquare> tempGSListForSquare = util.getTempGSListForSquare(mainGS.getX(), mainGS.getY(), mainGS.getParent(), grid);
-		List<GridSquare> tempGSListForRow = util.getTempGSListForRow(mainGS.getX(), mainGS.getY(), grid);
-		List<GridSquare> tempGSListForColumn = util.getTempGSListForColumn(mainGS.getX(), mainGS.getY(), grid);
+		List<GridSquare> tempGSListForSquare = util.getTempGSListForArea(mainGS.getX(), mainGS.getY(), mainGS.getParent(),Area.SQUARE,grid);
+		List<GridSquare> tempGSListForRow = util.getTempGSListForArea(mainGS.getX(), mainGS.getY(), mainGS.getParent(),Area.ROW,grid);
+		List<GridSquare> tempGSListForColumn = util.getTempGSListForArea(mainGS.getX(), mainGS.getY(), mainGS.getParent(),Area.COLUMN,grid);
 		heuristicNumberFinder(mainGS, tempGSListForSquare);
 		heuristicNumberFinder(mainGS, tempGSListForRow);
 		heuristicNumberFinder(mainGS, tempGSListForColumn);

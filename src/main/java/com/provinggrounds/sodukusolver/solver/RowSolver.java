@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.provinggrounds.sodukusolver.domain.Grid;
 import com.provinggrounds.sodukusolver.domain.GridSquare;
+import com.provinggrounds.sodukusolver.solver.SolverUtil.Area;
 
 /**
  * Removes Possible numbers for the current row
@@ -22,7 +23,7 @@ class RowSolver implements SolverInterface {
 	}
 
 	private void processRemoves(GridSquare mainGS, Grid grid) {
-		List<GridSquare> tempGSList = util.getTempGSListForRow(mainGS.getX(), mainGS.getY(), grid);
+		List<GridSquare> tempGSList = util.getTempGSListForArea(mainGS.getX(), mainGS.getY(), mainGS.getParent(),Area.ROW,grid);
 		tempGSList.stream()
 				.filter(tempGS -> tempGS.isConfirmed())
 				.forEach(tempGS -> mainGS.removePossibleNumber(tempGS.getConfirmedNumber()));

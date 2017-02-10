@@ -27,7 +27,7 @@ public class GridSquare {
 	public void setConfirmedNumber(int confirmedNumber){
 		if(confirmedNumber!=0){
 			this.confirmedNumber=confirmedNumber;
-			initialSet.removeIf(i->i!=confirmedNumber);
+			this.initialSet = new HashSet<Integer>(Arrays.asList(confirmedNumber));
 		}
 	}
 	

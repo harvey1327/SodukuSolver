@@ -1,6 +1,8 @@
 package com.provinggrounds.sodukusolver.solver;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.provinggrounds.sodukusolver.domain.Grid;
@@ -9,82 +11,78 @@ import com.provinggrounds.sodukusolver.domain.GridSquare;
 public class ConfirmSolver implements SolverInterface {
 
 	@Override
-	public void process(GridSquare gridSquare, Grid grid) {
-		gridSquare.setConfirmedNumber(gridSquare.getConfirmedNumberFromSet());
-		if(!gridSquare.isConfirmed()){
-			//setValueIfGridSquareHasUniqueInColumn(gridSquare, grid);
-		}
-		if(!gridSquare.isConfirmed()){
-			//setValueIfGridSquareHasUniqueInRow(gridSquare, grid);
-		}if(!gridSquare.isConfirmed()){
-			setValueIfGridSquareHasUniqueInSquare(gridSquare, grid);	
+	public void process(Grid grid) {
+		for(GridSquare mainGS : grid.getGridSquareList()){
+			if(!mainGS.isConfirmed()){
+				mainGS.setConfirmedNumber(mainGS.getConfirmedNumberFromSet());
+				if(!mainGS.isConfirmed()){
+					int mainX=mainGS.getX();
+					int mainY=mainGS.getY();
+					int mainParent=mainGS.getParent();
+					
+					List<GridSquare> tempGSListForSquare = getTempGSListForSquare(mainX, mainY, mainParent, grid);
+					List<GridSquare> tempGSListForRow = getTempGSListForRow(mainX, mainY, grid);
+					List<GridSquare> tempGSListForColumn = getTempGSListForColumn(mainX, mainY, grid);
+					heuristicNumberFinder(mainGS, tempGSListForRow);
+					heuristicNumberFinder(mainGS, tempGSListForColumn);
+				}
+			}
 		}
 	}
 	
-	private void setValueIfGridSquareHasUniqueInColumn(GridSquare gridSquare, Grid grid) {
+	private List<GridSquare> getTempGSListForSquare(int mainX, int mainY, int mainParent, Grid grid){
+		List<GridSquare> tempGSList = new ArrayList<GridSquare>();
+		for(GridSquare tempGS : grid.getGridSquareList()){
+			if(isGridSquareTempInSameSquare(mainX, mainY, mainParent, tempGS)){
+				tempGSList.add(tempGS);
+			}
+		}
+		return tempGSList;
+	}
+	
+	private List<GridSquare> getTempGSListForRow(int mainX, int mainY, Grid grid){
+		List<GridSquare> tempGSList = new ArrayList<GridSquare>();
+		for(GridSquare tempGS : grid.getGridSquareList()){
+			if(isGridSquareTempInSameRow(mainX, mainY, tempGS)){
+				tempGSList.add(tempGS);
+			}
+		}
+		return tempGSList;
+	}
+	
+	private List<GridSquare> getTempGSListForColumn(int mainX, int mainY, Grid grid){
+		List<GridSquare> tempGSList = new ArrayList<GridSquare>();
+		for(GridSquare tempGS : grid.getGridSquareList()){
+			if(isGridSquareTempInSameColumn(mainX, mainY, tempGS)){
+				tempGSList.add(tempGS);
+			}
+		}
+		return tempGSList;
+	}
+
+	private void heuristicNumberFinder(GridSquare mainGS, List<GridSquare> tempGSList) {
 		Set<Integer> nonUniqueIntegersSet = new HashSet<Integer>();
-		grid.getGridSquareList().stream()
-				.filter(gridSquareTemp -> isGridSquareTempInSameColumn(gridSquare, gridSquareTemp)
-						&& !gridSquareTemp.isConfirmed())
-				.forEach(gridSquareTemp->nonUniqueIntegersSet.addAll(gridSquareTemp.getInitialSet()));
+		tempGSList.stream()
+				.forEach(tempGS->nonUniqueIntegersSet.addAll(tempGS.getInitialSet()));
 
 		Set<Integer> uniqueNumbers = new HashSet<Integer>();
-		gridSquare.getInitialSet().stream().filter(number -> !nonUniqueIntegersSet.contains(number))
+		mainGS.getInitialSet().stream().filter(number -> !nonUniqueIntegersSet.contains(number))
 				.forEach(number -> uniqueNumbers.add(number));
 
 		if (uniqueNumbers.size() == 1) {
-			gridSquare.setConfirmedNumber(uniqueNumbers.toArray(new Integer[1])[0]);
+			mainGS.setConfirmedNumber(uniqueNumbers.toArray(new Integer[1])[0]);
 		}
 	}
 	
-	private void setValueIfGridSquareHasUniqueInSquare(GridSquare gridSquare, Grid grid) {
-		Set<Integer> nonUniqueIntegersSet = new HashSet<Integer>();
-		grid.getGridSquareList().stream()
-				.filter(gridSquareTemp -> isGridSquareTempInSameSquare(gridSquare, gridSquareTemp)
-						&& !gridSquareTemp.isConfirmed())
-				.forEach(gridSquareTemp->nonUniqueIntegersSet.addAll(gridSquareTemp.getInitialSet()));
-
-		Set<Integer> uniqueNumbers = new HashSet<Integer>();
-		gridSquare.getInitialSet().stream().filter(number -> !nonUniqueIntegersSet.contains(number))
-				.forEach(number -> uniqueNumbers.add(number));
-
-		if (uniqueNumbers.size() == 1) {
-			gridSquare.setConfirmedNumber(uniqueNumbers.toArray(new Integer[1])[0]);
-		}
+	private boolean isGridSquareTempInSameColumn(int mainX, int mainY, GridSquare tempGS) {
+		return tempGS.getX()==mainX&&tempGS.getY()!=mainY;
 	}
 	
-	private void setValueIfGridSquareHasUniqueInRow(GridSquare gridSquare, Grid grid) {
-		Set<Integer> nonUniqueIntegersSet = new HashSet<Integer>();
-		grid.getGridSquareList().stream()
-				.filter(gridSquareTemp -> isGridSquareTempInSameRow(gridSquare, gridSquareTemp)
-						&& !gridSquareTemp.isConfirmed())
-				.forEach(gridSquareTemp->nonUniqueIntegersSet.addAll(gridSquareTemp.getInitialSet()));
-
-		Set<Integer> uniqueNumbers = new HashSet<Integer>();
-		gridSquare.getInitialSet().stream().filter(number -> !nonUniqueIntegersSet.contains(number))
-				.forEach(number -> uniqueNumbers.add(number));
-
-		if (uniqueNumbers.size() == 1) {
-			gridSquare.setConfirmedNumber(uniqueNumbers.toArray(new Integer[1])[0]);
-		}
+	protected boolean isGridSquareTempInSameSquare(int mainX, int mainY, int mainParent, GridSquare tempGS) {
+		return tempGS.getParent() == mainParent && tempGS.getX() != mainX && tempGS.getY() != mainY;
 	}
 	
-	private boolean isGridSquareTempInSameColumn(GridSquare gridSquare, GridSquare gridSquareTemp) {
-		int x = gridSquare.getX();
-		int y = gridSquare.getY();
-		return gridSquareTemp.getX() == x && gridSquareTemp.getY() != y;
-	}
-	
-	protected boolean isGridSquareTempInSameRow(GridSquare gridSquare, GridSquare gridSquareTemp) {
-		int x = gridSquare.getX();
-		int y = gridSquare.getY();
-		return gridSquareTemp.getY() == y && gridSquareTemp.getX() != x;
-	}
-	
-	protected boolean isGridSquareTempInSameSquare(GridSquare gridSquare, GridSquare gridSquareTemp) {
-		int x = gridSquare.getX();
-		int y = gridSquare.getY();
-		int parent = gridSquare.getParent();
-		return gridSquareTemp.getParent() == parent && gridSquareTemp.getX() != x && gridSquareTemp.getY() != y;
+	private boolean isGridSquareTempInSameRow(int mainX, int mainY, GridSquare tempGS) {
+		return tempGS.getX()!=mainX&&tempGS.getY()==mainY;
 	}
 }

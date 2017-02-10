@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.provinggrounds.sodukusolver.domain.Grid;
-import com.provinggrounds.sodukusolver.domain.GridSquare;
 
 public class SolverCommand {
 
@@ -14,7 +13,7 @@ public class SolverCommand {
 		solverList.add(solverInterface);
 	}
 	
-	public void processCommands(GridSquare gridSquare, Grid grid){
-		solverList.forEach(solverInterface->solverInterface.process(gridSquare, grid));
+	public void processCommands(Grid grid){
+		solverList.forEach(solverInterface->solverInterface.process(grid));
 	}
 }

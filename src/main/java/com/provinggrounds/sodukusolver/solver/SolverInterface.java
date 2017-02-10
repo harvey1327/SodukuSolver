@@ -1,9 +1,8 @@
 package com.provinggrounds.sodukusolver.solver;
 
 import com.provinggrounds.sodukusolver.domain.Grid;
-import com.provinggrounds.sodukusolver.domain.GridSquare;
 
 interface SolverInterface {
 	
-	void process(GridSquare gridSquare, Grid grid);
+	void process(Grid grid);
 }

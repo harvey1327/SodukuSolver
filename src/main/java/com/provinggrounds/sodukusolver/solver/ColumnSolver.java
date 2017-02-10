@@ -1,6 +1,5 @@
 package com.provinggrounds.sodukusolver.solver;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.provinggrounds.sodukusolver.domain.Grid;
@@ -12,6 +11,8 @@ import com.provinggrounds.sodukusolver.domain.GridSquare;
  *
  */
 class ColumnSolver implements SolverInterface {
+	
+	private SolverUtil util = new SolverUtil();
 
 	@Override
 	public void process(Grid grid) {
@@ -19,7 +20,7 @@ class ColumnSolver implements SolverInterface {
 			if(!mainGS.isConfirmed()){
 				int mainX=mainGS.getX();
 				int mainY=mainGS.getY();
-				List<GridSquare> tempGSList = getTempGSListForColumn(mainX, mainY, grid);
+				List<GridSquare> tempGSList = util.getTempGSListForColumn(mainX, mainY, grid);
 				for(GridSquare tempGS : tempGSList){
 					if(tempGS.isConfirmed()){
 						mainGS.removePossibleNumber(tempGS.getConfirmedNumber());
@@ -27,19 +28,5 @@ class ColumnSolver implements SolverInterface {
 				}
 			}
 		}
-	}
-	
-	private List<GridSquare> getTempGSListForColumn(int mainX, int mainY, Grid grid){
-		List<GridSquare> tempGSList = new ArrayList<GridSquare>();
-		for(GridSquare tempGS : grid.getGridSquareList()){
-			if(isGridSquareTempInSameColumn(mainX, mainY, tempGS)){
-				tempGSList.add(tempGS);
-			}
-		}
-		return tempGSList;
-	}
-		
-	private boolean isGridSquareTempInSameColumn(int mainX, int mainY, GridSquare tempGS) {
-		return tempGS.getX()==mainX&&tempGS.getY()!=mainY;
 	}
 }

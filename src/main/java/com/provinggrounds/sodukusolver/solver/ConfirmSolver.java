@@ -25,8 +25,8 @@ public class ConfirmSolver implements SolverInterface {
 					List<GridSquare> tempGSListForRow = util.getTempGSListForRow(mainX, mainY, grid);
 					List<GridSquare> tempGSListForColumn = util.getTempGSListForColumn(mainX, mainY, grid);
 					heuristicNumberFinder(mainGS, tempGSListForSquare);
-					//heuristicNumberFinder(mainGS, tempGSListForRow);
-					//heuristicNumberFinder(mainGS, tempGSListForColumn);
+					heuristicNumberFinder(mainGS, tempGSListForRow);
+					heuristicNumberFinder(mainGS, tempGSListForColumn);
 				}
 			}
 		}

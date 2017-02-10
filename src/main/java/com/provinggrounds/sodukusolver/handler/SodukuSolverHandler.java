@@ -22,7 +22,7 @@ public class SodukuSolverHandler {
 			for(int x=1;x<=size;x++){
 				GridSquare gs = createGridSquare(x, y);
 				
-				//-------------ForTesting
+				//-------ForTesting------
 				TEST_createGridSquare(gs);
 				//-----------------------
 				

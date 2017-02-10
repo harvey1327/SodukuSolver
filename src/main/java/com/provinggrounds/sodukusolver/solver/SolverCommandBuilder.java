@@ -11,11 +11,14 @@ public class SolverCommandBuilder {
 		SolverInterface row = context.getBean("rowSolver", RowSolver.class);
 		SolverInterface col = context.getBean("columnSolver", ColumnSolver.class);
 		SolverInterface squ = context.getBean("squareSolver", SquareSolver.class);
+		SolverInterface con = context.getBean("confirmSolver", ConfirmSolver.class);
+		
 		
 		SolverCommand sc = context.getBean("solverCommand", SolverCommand.class);
 		sc.addConcreteSolver(row);
 		sc.addConcreteSolver(col);
 		sc.addConcreteSolver(squ);
+		sc.addConcreteSolver(con);
 		return sc;
 	}
 }

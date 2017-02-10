@@ -3,31 +3,34 @@ package com.provinggrounds.sodukusolver.solver;
 import com.provinggrounds.sodukusolver.domain.Grid;
 import com.provinggrounds.sodukusolver.domain.GridSquare;
 
-
 /**
- * Given any GridSquare we want to find out the parent square it resides in get
- * all other GridSquares
- * 
+ * Removes Possible numbers for the current square
  * @author HARBAL
  *
  */
-class SquareSolver extends SolverUtil implements SolverInterface {
+class SquareSolver implements SolverInterface {
 
 	@Override
 	public void process(GridSquare gridSquare, Grid grid) {
-		grid.getGridSquareList().stream().filter(gridSquareTemp -> isGridSquareTempInSameArea(gridSquare, gridSquareTemp))
-				.forEach(gridSquareTemp -> removePossibleNumberFromGridSquare(gridSquare, gridSquareTemp));
-		setConfirmedNumberInGridSquare(gridSquare);
-		if(!gridSquare.isConfirmed()){
-			//setValueIfGridSquareHasUnique(gridSquare, grid);
-		}
+		grid.getGridSquareList().stream()
+		.filter(gridSquareTemp -> isGridSquareTempInSameSquare(gridSquare, gridSquareTemp))
+		.forEach(gridSquareTemp -> removePossibleNumberFromGridSquare(gridSquare, gridSquareTemp));
 	}
 
-	@Override
-	protected boolean isGridSquareTempInSameArea(GridSquare gridSquare, GridSquare gridSquareTemp) {
+	protected boolean isGridSquareTempInSameSquare(GridSquare gridSquare, GridSquare gridSquareTemp) {
 		int x = gridSquare.getX();
 		int y = gridSquare.getY();
 		int parent = gridSquare.getParent();
 		return gridSquareTemp.getParent() == parent && gridSquareTemp.getX() != x && gridSquareTemp.getY() != y;
+	}
+	
+	/**
+	 * Remove number from the gridSquare possibleNumber set
+	 * 
+	 * @param gridSquare
+	 * @param gridSquareTemp
+	 */
+	private void removePossibleNumberFromGridSquare(GridSquare gridSquare, GridSquare gridSquareTemp) {
+		gridSquare.removePossibleNumber(gridSquareTemp.getConfirmedNumber());
 	}
 }

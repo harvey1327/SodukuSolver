@@ -6,6 +6,7 @@
 	<bean name="rowSolver" class="com.provinggrounds.sodukusolver.solver.RowSolver"/>
 	<bean name="columnSolver" class="com.provinggrounds.sodukusolver.solver.ColumnSolver"/>
 	<bean name="squareSolver" class="com.provinggrounds.sodukusolver.solver.SquareSolver"/>
+	<bean name="confirmSolver" class="com.provinggrounds.sodukusolver.solver.ConfirmSolver"/>
 	
 	<bean name="solverCommand" class="com.provinggrounds.sodukusolver.solver.SolverCommand" scope="prototype"/>
 </beans>

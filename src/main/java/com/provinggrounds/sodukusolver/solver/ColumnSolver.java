@@ -4,28 +4,32 @@ import com.provinggrounds.sodukusolver.domain.Grid;
 import com.provinggrounds.sodukusolver.domain.GridSquare;
 
 /**
- * Attempts to solve the GridSquare by looking at possible solution from other
- * GridSquares in the same column
- * 
+ * Removes Possible numbers for the current column
  * @author HARBAL
  *
  */
-class ColumnSolver extends SolverUtil implements SolverInterface {
+class ColumnSolver implements SolverInterface {
 
 	@Override
 	public void process(GridSquare gridSquare, Grid grid) {
-		grid.getGridSquareList().stream().filter(gridSquareTemp -> isGridSquareTempInSameArea(gridSquare, gridSquareTemp))
-				.forEach(gridSquareTemp -> removePossibleNumberFromGridSquare(gridSquare, gridSquareTemp));
-		setConfirmedNumberInGridSquare(gridSquare);
-		if(!gridSquare.isConfirmed()){
-			setValueIfGridSquareHasUnique(gridSquare, grid);
-		}
+		grid.getGridSquareList().stream()
+		.filter(gridSquareTemp -> isGridSquareTempInSameColumn(gridSquare, gridSquareTemp))
+		.forEach(gridSquareTemp -> removePossibleNumberFromGridSquare(gridSquare, gridSquareTemp));
 	}
 
-	@Override
-	protected boolean isGridSquareTempInSameArea(GridSquare gridSquare, GridSquare gridSquareTemp) {
-		int x=gridSquare.getX();
-		int y=gridSquare.getY();
+	protected boolean isGridSquareTempInSameColumn(GridSquare gridSquare, GridSquare gridSquareTemp) {
+		int x = gridSquare.getX();
+		int y = gridSquare.getY();
 		return gridSquareTemp.getX() == x && gridSquareTemp.getY() != y;
+	}
+	
+	/**
+	 * Remove number from the gridSquare possibleNumber set
+	 * 
+	 * @param gridSquare
+	 * @param gridSquareTemp
+	 */
+	private void removePossibleNumberFromGridSquare(GridSquare gridSquare, GridSquare gridSquareTemp) {
+		gridSquare.removePossibleNumber(gridSquareTemp.getConfirmedNumber());
 	}
 }
